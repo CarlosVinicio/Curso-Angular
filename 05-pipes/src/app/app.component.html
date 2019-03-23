@@ -1,0 +1,98 @@
+<div class="container">
+    <h3>Pipes</h3>
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Pipe</th>
+            <th scope="col">Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td> {{ nombre }} </td>
+            <td>Uppercase</td>
+            <td> {{ nombre | uppercase }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ nombre }} </td>
+            <td>Lowercase</td>
+            <td> {{ nombre | lowercase }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ nombre }} </td>
+            <td>slice:3</td>
+            <td> {{ nombre | slice:3 }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ nombre }} </td>
+            <td>slice:0:3</td>
+            <td> {{ nombre | slice:0:3 }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ PI }} </td>
+            <td> number : '3.0-0' </td>
+            <td> {{ PI | number:'3.0-0'}} </td>
+        </tr>
+
+        <tr>
+            <td> {{ PI }} </td>
+            <td> number : '1.0-4' </td>
+            <td> {{ PI | number:'1.0-4'}} </td>
+        </tr>
+
+        <tr>
+            <td> {{ valor }} </td>
+            <td> percent </td>
+            <td> {{ valor | percent }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ valor }} </td>
+            <td> percent: '2.2-2' </td>
+            <td> {{ valor | percent:'2.2-2' }} </td>
+        </tr>
+
+        <tr>
+            <td> {{ hero }} </td>
+            <td> json </td>
+            <td> {{ hero | json}} </td>
+        </tr>
+
+        <tr>
+            <td> {{ nombre }} </td>
+            <td> pipe propio contraseña: {{activate}}   <button (click)="activate = !activate">Activate</button></td>
+            <td> {{ nombre | contrasena :activate }} </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    <div>
+        <h4> Slice :1:4 en ngFor en arreglo del 1 a 10</h4>
+        <ul >
+            <li *ngFor="let item of arreglo | slice :1:4">{{ item }}</li>
+        </ul>
+    </div>
+
+    <div>
+        <h4> YouTube</h4>
+        <!-- Cuando recibimos una Url que se maneje desde un componente angular debemos de sanitizarla(hacer que sea segura)
+            para evitar ataques CRSS para ello creamos un pipe que nos "sanitize".
+
+            urlVideo es la propiedad que tenemos en app.component.ts, en urlVideo utilizamos el pipe(creado por mí) safeUrl creado para sanitizar o validar la url
+            que es manejada por el componente angular. Al pipe despes de los 2 puntos le pasamos el parametro que recibe la funcion transform en el pipe safeUrl
+        -->
+        <iframe width="560" height="315" [src]="urlVideo | safeUrl:'https://www.youtube.com/embed/' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+</div>
+
+
+<router-outlet></router-outlet>

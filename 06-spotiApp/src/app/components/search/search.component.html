@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col">
+    <!--toda palabra que este en un input y lleve un # quiere decir que
+      coge el valor de ese input y se puede pasar como parametro
+      Aunque lo aconsejable es usar ngModel
+    -->
+   <input placeholder="Search artist" type="text" #keyWord (keyup)="searchArtist(keyWord.value)" class="form-control">
+  </div>
+</div>
+
+<div class="m-2">
+   <app-cards [items]="artists"></app-cards>
+</div>

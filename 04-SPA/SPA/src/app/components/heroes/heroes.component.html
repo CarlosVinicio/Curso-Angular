@@ -1,0 +1,13 @@
+<h1>Heroes</h1>
+
+<hr>
+<!--
+    componente padre de hero-card-component *ngFor="let hero of heroes;let i = index"
+-->
+<div class="card-columns">
+    <!-- [hero]="foo" esta siendo pasado como dato a app-hero-card a traves del decorador @Input
+        (heroSelected)="$event" aqui le decimos que estamos escuchando cuando se emita el evento heroSelected desde un componente hijo(app-hero-card)
+        el $event es el parametro que se envia o se emite desde el hijo que en este caso es un numero
+    -->
+    <app-hero-card  [hero]="foo" [index]="i" (heroSelected)="viewHero($event)" *ngFor="let foo of heroes; let i = index"  ></app-hero-card>
+</div>

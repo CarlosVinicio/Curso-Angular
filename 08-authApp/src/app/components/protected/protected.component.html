@@ -1,0 +1,21 @@
+<div class="row container" *ngIf="profile">
+
+  <div class="col-md-4">
+    <img [src]="profile.picture" alt="" class="img-circle">
+  </div>
+
+  <div class="col-md-8">
+    <ul>
+      <li>js</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<pre>
+
+  {{ profile | json }}
+
+</pre>
+

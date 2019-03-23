@@ -1,0 +1,139 @@
+<h4>Formularios
+    <small>Aproximación por template</small>
+</h4>
+<hr>
+<!-- datos formulario es el valor que se obtiene directamente
+del formulario #datosFormulario los datos son de tipo ngForm
+ -->
+<form (ngSubmit)="save(datosFormulario)" #datosFormulario="ngForm">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+                <!-- Al poner #nombre es como si crease una variable local referente
+                    al ngForm con lo cual nombre tendra las propiedades del ngForm
+                    pero solo para el input name en este caso
+                -->
+                <input class="form-control"
+                       type="text"
+                       placeholder="Nombre"
+                       name="name"
+                       [(ngModel)]="user.name"
+                       required
+                       minlength="4"
+                       #nombre="ngModel"
+                       [ngClass]="{'is-invalid': nombre.errors?.minlength || nombre.errors?.required}"
+                >
+                <!--
+                   nombre: es la propiedad local #nombre=ngModel del template input
+                   el ? es porque errors es opcional es decir es posible que nombre no
+                   tenga la propiedad errors y daria error en la consola
+                -->
+                <div *ngIf="nombre.errors?.required" class="invalid-feedback">
+                    Este campo es requerido
+                </div>
+
+                <div *ngIf="nombre.errors?.minlength" class="invalid-feedback">
+                    Este campo necesita al menos 4 caracteres
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col-8">
+
+                <input class="form-control"
+                       type="text"
+                       name="surname"
+                       [(ngModel)]="user.surname"
+                       placeholder="Apellido"
+                       required
+                       #localSurname="ngModel"
+                       [ngClass]="{'is-invalid': localSurname.errors?.minlength || localSurname.errors?.required}"
+                >
+                <div *ngIf="localSurname.errors?.required" class="invalid-feedback">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+                   type="email"
+                   name="email"
+                   [(ngModel)]="user.email"
+                   placeholder="Correo electrónico"
+                   #localEmail="ngModel"
+                   required
+                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                   [ngClass]="{'is-invalid': localEmail.errors?.pattern || localEmail.errors?.required}">
+
+            <div *ngIf="localEmail.errors?.pattern" class="invalid-feedback">
+                Este campo no tiene formato de correo
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Países</label>
+        <div class="col-md-8">
+            <select [(ngModel)]="user.country" class="form-control" name="country">
+                <option value="">Seleccione un país.</option>
+                <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Sexo</label>
+        <div class="col-md-8">
+            <div class="custom-control custom-radio" *ngFor="let gen of genders; let i = index">
+                <input
+                    [(ngModel)]="user.gender"
+                    type="radio"
+                    name="gender"
+                    class="custom-control-input"
+                    [value]="gen">
+                <label class="custom-control-label">{{gen}}</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Acepta los terminos</label>
+        <div class="col-md-8">
+            <div class="custom-control custom-checkbox" >
+                <input type="checkbox"
+                       name="acept"
+                       class="custom-control-input"
+                       id="customCheck"
+                       [(ngModel)]="user.acept"
+                >
+                <label class="custom-control-label" for="customCheck">Si</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+<pre>
+    {{ user | json }}
+</pre>

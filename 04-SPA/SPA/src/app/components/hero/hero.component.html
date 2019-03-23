@@ -1,0 +1,12 @@
+<h3>Name:  {{hero.nombre}}</h3>
+<div class="row">
+    <div class="col-md-4">
+        <img [src]="hero.img"  class="img-fluid" alt="">
+        <br>
+
+        <p>
+            {{ hero.bio }}
+        </p>
+        <a [routerLink]="['/heroes']"  class="btn btn-outline-danger btn-block">Regresar</a>
+    </div>
+</div>

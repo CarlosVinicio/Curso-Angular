@@ -1,0 +1,19 @@
+<div class="card" >
+    <img [src]="hero.img" class="card-img-top" [alt]="hero.nombre">
+    <div class="card-body">
+        <h5 class="card-title"> {{ hero.nombre }}</h5>
+        <p class="card-text">{{ hero.bio }} </p>
+        <p class="card-text"><small class="text-muted"> {{ hero.aparicion }} </small></p>
+    </div>
+    <!--Esta forma sera como utilizar rutas mediante codigo js -->
+    <button type="button" (click)="viewHero()"
+            class="btn btn-outline-primary btn-block uk-margin-bottom">view</button>
+
+    <!--
+      esta ruta equivale a : /hero/id  (Hay q poner el / a la ruta ya que estamos intentando
+      entrar a una "subruta" del navigate)
+      i es la posicion del array de heroes
+
+    <a [routerLink]="['/hero', i]" routerLinkActive="router-link-active"  class="btn btn-outline-info btn-block">ver mas...</a>
+    -->
+</div>

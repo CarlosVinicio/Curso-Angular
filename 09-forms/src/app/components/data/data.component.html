@@ -1,0 +1,135 @@
+<h4>Formularios <small>Data</small></h4>
+<hr>
+<!-- Para enlazar datos desde el componente con el template usaremos el formGroup y en nombre
+    de la propiedad que estableciomos en el componente en este caso se llama forma
+ -->
+<form [formGroup]="forma" (ngSubmit)="save()">
+    <div formGroupName="nombreCompleto">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+
+                <!-- formControlName tiene que tener el mismo nombre que esta estableciodo
+                    en 'name': new FormControl() en este caso ha de llamarse name
+                -->
+                <input class="form-control"
+                       type="text"
+                       placeholder="Nombre"
+                       formControlName="name">
+
+                <!-- Mediante el .get podemos acceder a las propiedades del objeto y ver sus
+                    validaciones.
+                    forma.get('nombreCompleto.nombre').errors['required']
+                -->
+                <div *ngIf="forma.get('nombreCompleto.name').errors?.required" class="form-control-feedback">
+                    El nombre es requerido
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col-8">
+
+                <input class="form-control"
+                       type="text"
+                       placeholder="Apellido"
+                       formControlName="surname">
+                <div *ngIf="forma.get('nombreCompleto.surname').errors?.required" class="form-control-feedback">
+                    El nombre es requerido
+                </div>
+                <div *ngIf="forma.get('nombreCompleto.surname').errors?.minlength" class="form-control-feedback">
+                    El nombre debe tener almenos 3 caracteres
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+                   type="email"
+                   placeholder="Correo electrónico"
+                   formControlName="email">
+            <div *ngIf="forma.get('email').errors?.required" class="form-control-feedback">
+                El email es requerido
+            </div>
+            <div *ngIf="forma.get('email').errors?.pattern" class="form-control-feedback">
+                El email no ccumple el patron
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Hobbies</label>
+        <!-- con FormArrayName indicamos que en nuestro form tenemos una propiedad que
+            es un array que en este caso en el componente se llama 'hobbies': new FormArray
+        -->
+        <div class="input-group col-md-8" formArrayName="hobbies">
+            <!-- En formControlName tendra como valor el indice numerico del array, ya que estamos
+                recorriendo el array hobbies
+            -->
+            <input *ngFor="let hobby of forma.controls['hobbies'].controls,let i = index"
+                    [formControlName]="i"
+                    class="form-control"
+                    type="text">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Username Async</label>
+        <div class="input-group col-md-8">
+            <input  formControlName="username"
+                   class="form-control"
+                   type="text">
+        </div>
+    </div>
+
+    <div formGroupName="passwords">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;Password1</label>
+            <div class="input-group col-md-8">
+                <input
+                    formControlName="password1"
+                    class="form-control"
+                    type="password">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;Password2</label>
+            <div class="input-group col-md-8">
+                <input
+                    type="password"
+                    formControlName="password2"
+                    class="form-control"
+                    >
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary">
+                Guardar
+            </button>
+        </div>
+    </div>
+
+    <div>
+        {{ forma.valid }}
+    </div>
+
+    <div>
+        {{ forma.status }}
+    </div>
+
+
+
+</form>
