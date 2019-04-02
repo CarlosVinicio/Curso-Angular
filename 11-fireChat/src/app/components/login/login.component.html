@@ -1,0 +1,11 @@
+<div *ngIf="_chatService.afAuth.user | async as user; else showLogin" xmlns:fb="">
+  <button class="btn btn-outline-warning margin-logout" (click)="logout()" >Logout</button>
+</div>
+
+<ng-template #showLogin style="margin-left: 40%">
+  <p>Please login.</p>
+  <button (click)="login()" class="btn btn-outline-success">Login desd facebook</button>
+</ng-template>
+
+
+

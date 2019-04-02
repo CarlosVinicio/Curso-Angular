@@ -1,0 +1,44 @@
+
+<!-- Formulario de plantilla (No reactivo)-->
+<form class="example-full-width" (ngSubmit)="saveHero(form)" #form="ngForm">
+    <h2 mat-dialog-title>New Hero</h2>
+    <mat-progress-bar mode="indeterminate" *ngIf="progress"></mat-progress-bar>
+
+    <mat-dialog-content class="mat-typography ">
+        <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="hero.name"
+                   name="name"
+                   #name="ngModel"
+                   placeholder="Name"
+                   required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput
+                      placeholder="Description"
+                      [(ngModel)]="hero.bio"
+                      name="bio"
+                      #bio="ngModel"
+                      required>
+
+            </textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>House hero</mat-label>
+            <mat-select
+                [(ngModel)]="hero.house"
+                name="house"
+                #house="ngModel"
+            >
+                <mat-option *ngFor="let heroHouse of heroesHouses" [value]="heroHouse.value">
+                    {{heroHouse.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="onNoClick()">Cancel</button>
+        <button mat-button [disabled]="form.invalid" >create</button>
+    </mat-dialog-actions>
+</form>

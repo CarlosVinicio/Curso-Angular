@@ -1,0 +1,57 @@
+
+<div id="frame" *ngIf="_chatService.afAuth.user | async as user;" >
+  <div id="sidepanel">
+    <div id="profile">
+      <div class="wrap">
+        <img [src]="user.photoURL" class="online" alt="no fiti" />
+        <p>{{user.displayName}}</p>
+        <div id="status-options">
+          <ul>
+            <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
+            <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
+            <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
+            <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="search">
+      <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
+      <input type="text" placeholder="Search contacts..." />
+    </div>
+    <div id="contacts">
+      <ul>
+        <div  *ngFor="let localuser of users">
+          <li class="contact" *ngIf="user.uid != localuser.uid" (click)="getContactData(user.uid ,localuser)">
+            <div class="wrap" [ngClass]="{'is-online': user}">
+              <img [src]="localuser.img" alt="sd" />
+              <div class="meta">
+                <p class="name">{{localuser.name}}</p>
+              </div>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="contact-profile">
+      <img [src]="contact.img" alt="" />
+      <p>{{ contact.name }}</p>
+    </div>
+    <div class="messages" id="app-mensajes" >
+      <ul>
+        <li class="sent" *ngFor="let chat of chats" [ngClass]="{'sent': _chatService.user.uid == chat.uid, 'replies':_chatService.user.uid != chat.uid }" >
+          <img [src]="chat.img" alt="" />
+          <p>{{ chat.message }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="message-input">
+      <div class="wrap">
+        <input style="width: 90%" type="text" [(ngModel)]="messageText" (keyup.enter)="sendMessage()" placeholder="Write your message..." />
+        <button class="submit" (click)="sendMessage()"  ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
