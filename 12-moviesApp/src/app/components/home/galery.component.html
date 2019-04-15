@@ -1,0 +1,42 @@
+<h1>{{ title }}</h1>
+<hr>
+
+<div class="row">
+  <div class="col-sm-6">
+
+    <div class="row">
+      <div class="col-md-12 div-pic-1 puntero" [routerLink]="['/movie', movies?.results[0].id, 'galery' ]"
+        [ngStyle]="{ 'background-image': 'url( ' + url + movies?.results[0].poster_path +')' }">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 div-pic-2 puntero" [routerLink]="['/movie', movies?.results[1].id, 'galery' ]"
+        [ngStyle]="{ 'background-image':  'url( ' + url + movies?.results[1].poster_path +')'  }">
+      </div>
+      <div class="col-sm-6 div-pic-2 puntero" [routerLink]="['/movie', movies?.results[2].id , 'galery']"
+        [ngStyle]="{ 'background-image':  'url( ' + url + movies?.results[2].poster_path +')'  }">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6 div-pic-2 puntero" [routerLink]="['/movie', movies?.results[3].id , 'galery']"
+        [ngStyle]="{ 'background-image':  'url( ' + url + movies?.results[3].poster_path +')'  }">
+      </div>
+      <div class="col-sm-6 div-pic-2 puntero" [routerLink]="['/movie', movies?.results[0].id , 'galery']"
+        [routerLink]="['/movie', movies?.results[4].id ]"
+        [ngStyle]="{ 'background-image':  'url( ' + url + movies?.results[4].poster_path +')'  }">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 div-pic-1 puntero" [routerLink]="['/movie', movies?.results[5].id , 'galery']"
+        [ngStyle]="{ 'background-image':  'url( ' + url + movies?.results[5].poster_path +')'  }">
+      </div>
+    </div>
+
+  </div>
+</div>

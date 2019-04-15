@@ -1,0 +1,19 @@
+<div *ngIf="movie" class="container main-container animated fadeIn fast">
+  <h1>{{ movie.title }}</h1>
+  <div class="row">
+    <div class="col-md-5">
+      <img [src]="movie | noImage" [alt]="movie.title" class="img-thumbnail img-fluid">
+    </div>
+
+    <div class="col-md-7">
+      <p>{{ movie.original_title }}</p>
+      <hr>
+      <p>{{ movie.overview }}</p>
+
+      <p><b>Popularity:</b> {{ movie.popularity }}</p>
+
+      <button class="btn btn-outline-success" type="button" [routerLink]="['/'+backTo]" >back</button>
+
+    </div>
+  </div>
+</div>

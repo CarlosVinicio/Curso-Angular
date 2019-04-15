@@ -11,9 +11,6 @@ import {
 } from '@angular/forms';
 import {Observable} from "rxjs";
 import {FakeapiService} from "../../services/fakeapi.service";
-import {error} from "@angular/compiler/src/util";
-import {forEach} from "@angular/router/src/utils/collection";
-
 
 
 // En este componente trabajamos con formularios reactivos
